@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.aut.minitelegram_client.controllers.HomeController">
+
+    <top>
+        <HBox>
+            <Region HBox.hgrow="NEVER"/>
+            <Label text="User:"/>
+            <Label fx:id="currentUserLabel" style="-fx-font-weight: bold;"/>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox prefWidth="200">
+            <padding>
+                <Insets top="10" right="5" bottom="10" left="10"/>
+            </padding>
+            <Label text="Chats" style="-fx-font-size: 16px;"/>
+            <ListView fx:id="chatListView" VBox.vgrow="ALWAYS" onMouseClicked="#onChatSelect"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <HBox spacing="5">
+                <TextField fx:id="inputUsername" promptText="Username…"/>
+                <Button text="Create" onAction="#onCreateChat"/>
+            </HBox>
+            <Label fx:id="status" textFill="blue"/>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label fx:id="chatTitle" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <ListView fx:id="messageListView" VBox.vgrow="ALWAYS"/>
+            <HBox spacing="5">
+                <TextField fx:id="messageField" HBox.hgrow="ALWAYS" promptText="Type a message…"/>
+                <Button text="Send" onAction="#onSendMessage"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

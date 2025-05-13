@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.HBox?>
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" fx:controller="org.aut.minitelegram_client.controllers.LoginController">
+    <Label text="Welcome" style="-fx-font-size: 18px;"/>
+    <TextField fx:id="username" promptText="Username"/>
+    <PasswordField fx:id="password" promptText="Password"/>
+    <HBox spacing="10">
+        <Button text="Sign Up" onAction="#onSignUp"/>
+        <Button text="Log In"  onAction="#onLogin"/>
+    </HBox>
+    <Label fx:id="messageLabel" wrapText="true"/>
+</VBox>
