@@ -1,50 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.aut.minitelegram_client.controllers.HomeController">
+            fx:controller="org.aut.minitelegram_client.controllers.HomeController"
+            stylesheets="@home-style.css">
 
     <top>
-        <HBox>
-            <Region HBox.hgrow="NEVER"/>
-            <Label text="User:"/>
-            <Label fx:id="currentUserLabel" style="-fx-font-weight: bold;"/>
+        <HBox styleClass="header" alignment="CENTER">
+            <Label text="Logged in as:" styleClass="header-text"/>
+            <Label fx:id="currentUserLabel" styleClass="header-username"/>
             <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
+                <Insets top="15" right="20" bottom="15" left="20"/>
             </padding>
         </HBox>
     </top>
 
     <left>
-        <VBox prefWidth="200">
+        <VBox styleClass="sidebar" prefWidth="250">
+            <Label text="Chats" styleClass="sidebar-title"/>
+            <ListView fx:id="chatListView" styleClass="chat-list" VBox.vgrow="ALWAYS" onMouseClicked="#onChatSelect"/>
+            <VBox styleClass="new-chat-section" spacing="10">
+                <Label text="Start New Chat" styleClass="section-title"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="inputUsername" styleClass="input-field" promptText="Enter username..."/>
+                    <Button text="Create" styleClass="action-button" onAction="#onCreateChat"/>
+                </HBox>
+                <Label fx:id="status" styleClass="status-message"/>
+            </VBox>
             <padding>
-                <Insets top="10" right="5" bottom="10" left="10"/>
+                <Insets top="15" right="15" bottom="15" left="15"/>
             </padding>
-            <Label text="Chats" style="-fx-font-size: 16px;"/>
-            <ListView fx:id="chatListView" VBox.vgrow="ALWAYS" onMouseClicked="#onChatSelect"/>
-            <Region VBox.vgrow="ALWAYS"/>
-            <HBox spacing="5">
-                <TextField fx:id="inputUsername" promptText="Username…"/>
-                <Button text="Create" onAction="#onCreateChat"/>
-            </HBox>
-            <Label fx:id="status" textFill="blue"/>
         </VBox>
     </left>
 
     <center>
-        <VBox>
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
-            <Label fx:id="chatTitle" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-            <ListView fx:id="messageListView" VBox.vgrow="ALWAYS"/>
-            <HBox spacing="5">
-                <TextField fx:id="messageField" HBox.hgrow="ALWAYS" promptText="Type a message…"/>
-                <Button text="Send" onAction="#onSendMessage"/>
+        <VBox styleClass="chat-area">
+            <Label fx:id="chatTitle" styleClass="chat-title"/>
+            <ListView fx:id="messageListView" styleClass="message-list" VBox.vgrow="ALWAYS"/>
+            <HBox styleClass="message-input" spacing="10">
+                <TextField fx:id="messageField" styleClass="message-field" HBox.hgrow="ALWAYS" promptText="Type your message here..."/>
+                <Button text="Send" styleClass="send-button" onAction="#onSendMessage"/>
             </HBox>
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
         </VBox>
     </center>
 </BorderPane>

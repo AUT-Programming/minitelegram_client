@@ -1,0 +1,83 @@
+.root {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-background-color: linear-gradient(to bottom right, #3498db, #2c3e50);
+}
+
+.login-box {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 40px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+    -fx-min-width: 350px;
+    -fx-max-width: 350px;
+}
+
+.app-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 20px 0;
+}
+
+.form-group {
+    -fx-min-width: 100%;
+}
+
+.form-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+}
+
+.form-input {
+    -fx-pref-height: 40px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-color: #bdc3c7;
+    -fx-prompt-text-fill: #95a5a6;
+    -fx-padding: 0 15px;
+}
+
+.form-input:focused {
+    -fx-border-color: #3498db;
+    -fx-effect: dropshadow(three-pass-box, rgba(52,152,219,0.3), 5, 0, 0, 0);
+}
+
+.button-group {
+    -fx-padding: 15px 0 0 0;
+}
+
+.primary-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 120px;
+}
+
+.primary-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.secondary-button {
+    -fx-background-color: #ecf0f1;
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 120px;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #d6dbdf;
+}
+
+.status-message {
+    -fx-text-fill: #e74c3c;
+    -fx-font-size: 13px;
+    -fx-max-width: 270px;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: CENTER;
+    -fx-padding: 10px 0 0 0;
+}

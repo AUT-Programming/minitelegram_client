@@ -50,6 +50,13 @@ public class HomeController {
             e.printStackTrace();
             status.setText("Failed to load chats");
         }
+        currentUserLabel.setOnMouseClicked(event -> {
+            try {
+                loadChats();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void loadChats() throws Exception {
@@ -66,6 +73,10 @@ public class HomeController {
             JsonArray arr = JsonParser.parseString(resp.body()).getAsJsonArray();
             List<JsonObject> chats = new ArrayList<>();
             for (JsonElement el : arr) {
+                String title = el.getAsJsonObject().get("name").getAsString();
+                String[] names = title.split("##");
+                String user = (names[0]).equals(Session.username) ? names[1] : names[0];
+                el.getAsJsonObject().addProperty("name", user);
                 chats.add(el.getAsJsonObject());
             }
             chatListView.setItems(FXCollections.observableArrayList(chats));
@@ -82,8 +93,8 @@ public class HomeController {
             return;
         }
         try {
-            // create private chat
-            String body = gson.toJson(Map.of("name", other, "isGroup", false));
+            String body = gson.toJson(
+                    Map.of("name", Session.username + "##" + other, "isGroup", false));
             HttpRequest req = HttpRequest.newBuilder()
                     .uri(URI.create(SERVER_URL + "/chat"))
                     .header("Content-Type","application/json")
@@ -97,7 +108,6 @@ public class HomeController {
             }
             int chatId = gson.fromJson(resp.body(), JsonObject.class).get("id").getAsInt();
 
-            // add members
             for (String u : List.of(Session.username, other)) {
                 String cmBody = gson.toJson(Map.of(
                         "chatId", chatId,
@@ -119,8 +129,7 @@ public class HomeController {
 
             inputUsername.clear();
             status.setText("Chat with " + other + " created");
-            loadChats();  // refresh immediately
-
+            loadChats();
         } catch (Exception e) {
             e.printStackTrace();
             status.setText("Error: " + e.getMessage());
